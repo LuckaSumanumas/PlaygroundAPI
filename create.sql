@@ -1,0 +1,14 @@
+create sequence equipment_seq start with 1 increment by 50;
+create sequence kid_seq start with 1 increment by 50;
+create sequence play_site_equipment_seq start with 1 increment by 50;
+create sequence play_site_kid_seq start with 1 increment by 50;
+create sequence play_site_seq start with 1 increment by 50;
+create table equipment (id bigint not null, code varchar(255) not null, name varchar(255) not null, primary key (id));
+create table kid (accepts_waiting boolean not null, age integer not null, id bigint not null, name varchar(255) not null, ticket_number varchar(255) not null, primary key (id));
+create table play_site (max_nmber_of_kids integer not null, id bigint not null, code varchar(255) not null, name varchar(255) not null, playground varchar(255) not null, primary key (id));
+create table play_site_equipment (equipment_id bigint, id bigint not null, play_site_id bigint, primary key (id));
+create table play_site_kid (is_in_play_site boolean not null, id bigint not null, kid_id bigint unique, play_site_id bigint, primary key (id));
+alter table if exists play_site_equipment add constraint FKr6lnpyeh350y0a00lxy6l881d foreign key (equipment_id) references equipment;
+alter table if exists play_site_equipment add constraint FKp0fesjto8agpn3r37l9w9obj0 foreign key (play_site_id) references play_site;
+alter table if exists play_site_kid add constraint FKk8opddh41hk6gac9p4588lnrs foreign key (kid_id) references kid;
+alter table if exists play_site_kid add constraint FKmtw6di2ymvsp0yugu0dwe3u4t foreign key (play_site_id) references play_site;
