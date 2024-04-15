@@ -243,7 +243,7 @@ public class PlaygroundController {
 
     @GetMapping("/playgrounds")
     @Operation(
-        description = "Find data of kids.",
+        description = "Data about playground's play sites.",
         tags = { "Playgrounds" }
     )
     List<PlaygroundEntity> getPlaygrounds() {
